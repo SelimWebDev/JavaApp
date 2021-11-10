@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app 
+  xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  version="3.0"
+ >
+
+	<listener>
+    	<listener-class>config.InitialisationDaoFactory</listener-class>
+	</listener>
+
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<include-prelude>/WEB-INF/taglibs.jsp</include-prelude>
+		</jsp-property-group>
+	</jsp-config>
+	
+	<servlet>
+		<servlet-name>CreationClient</servlet-name>
+		<servlet-class>servlets.CreationClient</servlet-class>
+		<init-param>
+			<param-name>chemin</param-name> 
+			<param-value>/Users/selim/Pictures</param-value> 
+		</init-param>
+		<multipart-config>
+			<location>C:/Users/selim/Pictures</location>
+			<max-file-size>2097152</max-file-size> <!-- 2 Mo -->
+			<max-request-size>10485760</max-request-size> <!-- 5 x 2Mo -->
+			<file-size-threshold>1048576</file-size-threshold> <!-- 1 Mo -->
+		</multipart-config>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CreationClient</servlet-name>
+		<url-pattern>/creationClient</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>Image</servlet-name>
+		<servlet-class>servlets.Image</servlet-class>
+		<init-param>
+			<param-name>chemin</param-name> 
+			<param-value>/Users/selim/Pictures</param-value> 
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Image</servlet-name>
+		<url-pattern>/image/*</url-pattern>
+	</servlet-mapping>
+	
+
+	<servlet>
+		<servlet-name>ListerClients</servlet-name>
+		<servlet-class>servlets.ListerClients</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListerClients</servlet-name>
+		<url-pattern>/listerClients</url-pattern>
+	</servlet-mapping>
+	<mime-mapping>
+    <extension>jpeg</extension>
+    <mime-type>image/jpeg</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+	    <extension>jpg</extension>
+	    <mime-type>image/jpeg</mime-type>
+	</mime-mapping>
+	
+	
+	<servlet>
+		<servlet-name>SuppressionClient</servlet-name>
+		<servlet-class>servlets.SuppressionClient</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SuppressionClient</servlet-name>
+		<url-pattern>/suppressionClient</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CreationCommande</servlet-name>
+		<servlet-class>servlets.CreationCommande</servlet-class>
+	</servlet>	
+	<servlet-mapping>
+		<servlet-name>CreationCommande</servlet-name>
+		<url-pattern>/creationCommande</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ListerCommandes</servlet-name>
+		<servlet-class>servlets.ListerCommandes</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListerCommandes</servlet-name>
+		<url-pattern>/listerCommandes</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SuppressionCommande</servlet-name>
+		<servlet-class>servlets.SuppressionCommande</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SuppressionCommande</servlet-name>
+		<url-pattern>/suppressionCommande</url-pattern>
+	</servlet-mapping>
+	
+	<filter>	
+		<filter-name>MajBdd</filter-name>
+		<filter-class>filters.MajBdd</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>MajBdd</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>Inscription</servlet-name>
+		<servlet-class>servlets.Inscription</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Inscription</servlet-name>
+		<url-pattern>/inscription</url-pattern>
+	</servlet-mapping>
+	
+
+	<welcome-file-list>
+    	<welcome-file>connexion.jsp</welcome-file>
+	</welcome-file-list>
+
+</web-app>
